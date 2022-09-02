@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-16">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python kurzus - IDE beállítása</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="../css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="../css/custom.css"  media="screen,projection"/>
+</head>
+<header>
+    <nav>
+        <div class="nav-wrapper">
+            <ul id="nav-mobile" class="right">
+                <li><a href="../index.html">Kezdőoldal</a></li>
+                <li><a href="01-install-python.html">Előző fejezet</a></li>
+                <li><a href="03-valtozok.html">Következő fejezet</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<body>
+    <div class="container">
+        <h1>
+            Fejlesztői környezet beállítása
+        </h1>
+        <div class="card">
+            <span class="card-title"></span>
+            <div class="card-content">
+                <p>
+                    Az előző fejezetben feltelepítettük számítógépünkre a Python legújabb kiadását.
+                    Így kézhez kaptunk egy működő interpretert, amely képes értelmezni a kiadott utasításokat és végrehajtja azokat.
+                    Ennek működését ki is próbáltuk egy egysoros példával. A kiadott utasítás akkor azonnal végrehajtódott.
+                    A továbbiakban azonban szeretnénk némileg összetettebb programokat írni.
+                </p>        
+            </div>
+        </div>
+        <div class="card">
+            <span class="card-title"></span>
+            <div class="card-content">
+                <p>
+                    A számítógépes programok megalkotásának fontos lépése a forráskód írása.
+                    Itt nagy volt a kísértés, hogy azt írjam, a programok megalkotása a forráskóddal kezdődik,  de valójában valamilyen tervezés / ötlet mindig megelőzi a programírást.
+                    Amennyiben már tudjuk, hogy nagyjából mit akarunk, hozzáfoghatunk a gépeléshez.
+                    A forráskód különböző szöveges fájlokban tárolódik. Python esetében ezek <b>.py</b> kiterjesztéssel rendelkeznek.
+                    A különböző fájlok hivatkozhatnak egymásra. Úgymond beimportáljuk a különböző fájlokban található modulokat.
+                    Így nem kell egyetlen hosszú fájlba sűríteni mindent. Könnyebb lesz beazonosítani, mi hol van megvalósítva. Egyszóval minden átláthatóbbá válik.
+                    Az egyes fájlokban aztán különböző utasítások sorozata található. 
+                    Olvasd be X-et! Szorozd össze X-et és Y-t és rendeld az eredményt Z-hez! Írd ki Z-t!
+                    Ilyen és ehhez hasonló parancsok végrehajtására utasítjuk a gépet.
+                    Amikor elég bátorságot gyűjtöttünk, akkor megkérhetjük a Python interpretert, 
+                    hogy értelmezze a halandzsát, amit kreáltunk és futtassa a programot.
+                    Amennyiben nem követtünk el túl nagy baklövést, a forráskódban lévő utasítások sorozata szép sorban végrehajtódik.
+                    Hogy milyen sorban? Leginkább balról jobbra, fentről le. (Esetenként ugrásokkal.) Na és hol kezdődik ez a végrehajtás? Hát az elején!
+                    ... azaz, hogy a programunk belépési pontján. Egyelőre legyen elég annyi, hogy van egy ilyen. 
+                </p>        
+            </div>
+        </div>
+        <div class="card">
+            <span class="card-title"></span>
+            <div class="card-content">
+                <p>
+                    Az előző bekezdés fő tanulsága, hogy szöveges fájlokat szeretnénk szerkeszteni, amelyek összességét a program forráskódjának nevezzük.
+                    Ezek a fájlok azért elég összetettek is lehetnek.
+                    Jó volna olyan eszköz, ami segít átlátni a tartalmukat, és megkönnyíti a szerkesztésük.
+                    Ezt a feladatot hivatottak ellátni a különböző integrált fejlesztői környezetek (<b>Integrated Development Environment</b>, röviden <b>IDE</b>).
+                    Ezek különböző színekkel emelik ki a kulcsszavakat a kódban (Syntax highlighting). Segítenek kiegészíteni a kulcsszavakat gépelés közben (Code completion).
+                    Aláhúzzák a hibás kódrészeket (Error highlighting). Lehetővé teszik a kód kattintásra történő futtatását.
+                    Sok ilyen szoftver létezik. Gyakran a használandó programozási nyelvtől is függ, hogy melyiket választjuk.
+                    Pythonban való programozáshoz leginkább az olyan lehetőségek merülnek fel,
+                    mint a Microsoft által fejlesztett <a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a>, 
+                    az <a href="https://atom.io/" target="_blank">Atom</a> vagy a JetBrains által fejlesztett <a href="https://www.jetbrains.com/pycharm/" target="_blank">PyCharm</a>.
+                    Ehhez a kurzushoz a PyCharm oktatási célra fejlesztett változatára esett a választásom. 
+                </p>        
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">A Pycharmról</span>
+                <p>
+                    A <a href="https://www.jetbrains.com/pycharm/" target="_blank">PyCharm</a> egy kifejezetten Pythonhoz készült fejlesztői környezet, ahogyan erre a neve is utal.
+                    Hasonlóan más JetBrains termékekhez rendkívül jó eszközöket nyújt a fejlesztés megkönnyítésére.
+                    Hátulütője, hogy egy nagyobb méretű programról van szó. Ennél fogva esetenként lomhább tud lenni más, pehelysúlyú IDE-knél.
+                    Különböző változatai érhetőek el. Mi az oktatási célra szánt verziót fogjuk használni. Ez ingyenesen hozzáférhető.
+                    Létezik <b>Community edition</b>, ami lényegében ugyanazt tudja, mint az oktatási verzió.
+                    Ez szintén ingyenes, csak hiányoznak belőle a beépített tananyagok.
+                    A legbővebb változat a <b>Professional edition</b>.
+                    Ez a legjobb, legteljesebb kiadás. Ellenben ez fizetős. Azaz, hogy mégsem!
+                    Akreditált felsőoktatási intézményben tanuló hallgatók hozzáférési jogosultságot igényelhetnek a legtöbb JetBrains termékhez.
+                    Ennek a lehetőségnek a részleteiről <a href="jetbrains-academy-license.html">egy külön fejezetben</a> lehet bővebben olvasni.
+                    Én azonban úgy gondolom, hogy az alapok elsajátításához szükségtelen a teljes verzió használata.
+                </p>        
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s2">
+                <img class="responsive-img" src="../resources/pycharm-logo.png" sizes="">
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">IDE telepítés</span>
+                <p>
+                    Bocsánat a sok szövegért! Ígérem, hogy most már beállítjuk azt a környezetet.
+                    Navigáljunk a <a href="https://www.jetbrains.com/pycharm-edu/" target="_blank">PyCharm Edu weboldalára</a>!
+                    Itt nehéz lesz eltéveszteni: Kattintsunk a <b>Download free</b> gombra!
+                    A következő oldalon ismét kattintsunk a <b>Download</b> gomra!
+                    A letöltődött telepítőt futtatva néhány beállításra érdemes figyelni.
+                    A telepítési útvonal lehet tetszőleges. Hagyhatjuk az alapértelmezettet.
+                    A következő oldalon bepipálhatjuk a <b>Create Desktop Shortcut</b> és <b>Update PATH variable</b> mezőket.
+                    Az installáló szeretné, hogy válasszunk Python verziót. Az Education kiadás automatikusan elvégzi a Python telepítést is.
+                    Ez kényelmes viszont bosszantó, mivel az előző fejezetben mással sem foglalkoztunk, mint a Python installálásával.
+                    Nyugtasson meg az a gondolat, hogy jobb úrrá lenni a különböző verziók felett! Láthatjuk is, hogy itt csak kétféle verzió kínálkozik.
+                    A másik dolog, hogy ugyan most elfedi előlünk, de a háttérben ugyanolyan installáció megy végbe, mint amit korábban manuálisan végeztünk el.
+                    Jobb, ha értjük, mit csinál a gép. A PyCharm más kiadásai szintén nem könnyítenék meg ennyire a dolgunk.
+                    Válasszuk tehát bármelyiket! Majd később beállítjuk, hogy a mi általunk telepítettet használja.
+                    A következő oldalon hagyjuk az alapértelmezett <b>JetBrains</b> foldert!
+                    Végezetül nem árt újraindítani a gépet.
+                </p>        
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title"></span>
+                <p>
+                    Üdvözlet újra a reboot után! Keressük ki a létrejött futtató hivatkozást.
+                    Egyezzünk bele a felhasználói feltételekbe! (Szigorúan elolvasás NÉLKÜL!)
+                    Az anonim adatgyűjtésről döntsünk szívünk szerint!
+                    A következő a szerénységi beállítás: Válasszuk a <b>Learner</b> opciót!
+                </p>        
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+            <span class="card-title">Kezdeti beállítások</span>
+                <p>
+                    Ezek után megjelenik a PyCharm kezdő ablaka. Itt lehet új projektbe kezdeni.
+                    Mi először végezzünk el néhány beállítást, mielőtt belevetnénk magunk a fejlesztői környezettel való ismerkedésbe!
+                    Menjünk a <b>Customize</b> fülre! Itt máris lehetőség lenne a szerkesztő szín témájának kiválasztására.
+                    Ezt most ne piszkáljuk!
+                    Inkább örüljünk, hogy a JetBrainsnél ismerik a MEME-et, és alapból sötét témával indult a program.
+                    Persze mindig akadnak eretnekek.
+                    Nekik tehát itt a lehetőség, hogy kövessék a furcsa perverziójuk, és világos témát állítsanak be.
+                    Na szóval, ami minket érdekel az az apró <b>All settings...</b> hivatkozás.
+                    A megnyíló ablakban navigáljunk a <b>Python Interpreter</b> fülre!
+                    Itt jóeséllyel a <b>No interpreter</b> felirat fogad bennünket. Kattintsunk a jobb szélen levő fogaskerékre, majd <b>Add...</b>.
+                    Bal oldalon válasszuk a <b>System interpreter</b> lehetőséget! Ez viszonylag fontos lépés.
+                    Arról van szó, hogy egyébként lehetőség van virtuális környzetek létrehozására,
+                    amelyekben egy-egy projekthez szükséges modulokat telepíthetünk. Így tisztábban tarthatjuk a projektjeink függőségeit.
+                    Az egyes projektek különböző virtuális környezeteket használhatnak, amelyek egymástól izoláltak.
+                    Azt gondolom, hogy ez a kezdetekben összezavaró lehet. Én is eléggé belegabajodtam, amikor tavaly egy Pythonos projekt tesztelésén dolgoztam.
+                    Szóval a System interpreter lehetőséget választva közvetlenül a korábban telepített interpretert fogjuk használni és nem annak egy másolatát.
+                    Valószínűleg a PyCharm már megtalálta az általunk telepített <b>...Python310/python.exe</b> elérési útvonalát.
+                    Hogyha mégsem, vagy az imént automatikusan telepített 2.7 / 3.8-as verzió jelenne meg, a <b>...</b> gombra kattintva tallózhatjuk a saját verziónkat.
+                    (Az útvonal megtalálásáról az <a href="01-install-python.html">előző fejezetben</a> találsz útmutatót.)
+                    Nyomjunk Ok-t! Most már megjelentek az ehhez a Python istallációhoz tartozó programcsomagok is. (Pl.: <b>PIP</b>)
+                    Ehhez az ablakhoz később vissza fogunk térni, amikor egyéb csomagokat fogunk telepíteni.
+                    Most ismét Ok-t nyomva visszatérhetünk a kezdőablakhoz.
+                </p>        
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">Új projekt létrehozása</span>
+                <p>
+                    A <b>Projects</b> fül alatt kattintsunk a <b>New Project</b> gombra!
+                    A megnyílt ablakban válasszuk a <b>Previously Configured Interpreter</b> lehetőséget!
+                    Itt ki tudjuk választani a korábban beállított interpretert.
+                    Hagyjuk bepipálva a <b>Create a main.py welcome script</b> opciót!
+                    A <b>Create</b>-re kattintva létrejön a projekt.
+                </p>        
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">A kezdőprojekt tartalma</span>
+                <p>
+                    Most már megnyílt a PyCharm teljes ablaka. Középen a <b>main.py</b> automatikusan generált forrásfájl tartalma látható.
+                    A <b>#</b> (hashmark)-kal kezdődő sorok kommentárok. Ezeket nem értelmezi az interpreter.
+                    Így lehet üzeneteket hagyni a fejlesztőtársaknak vagy jövőbeli önmagunknak.
+                    Olvassuk is el ezeket! Van néhány hasznos információ.
+                    A kommenteken kívül van egy <b>def</b>fel kezdődő sor.
+                    Ez egy függvény definíciójának kezdetét jelöli.
+                    Láthatjuk, hogy a def kulcsszó után a <b>print_hi</b> karakterlánc következik.
+                    Ez a függvény neve. A név után szimpla zárójelek közt a <b>name</b> karakterlánc következik.
+                    Ez a függvény paraméterének neve. 
+                    A zárójel után a kettőspont jelzi, hogy kezdődik a függvény törzsének definíciója.
+                    A következő sorban négy szóközzel beljebb kezdődik a sor.
+                    Innen tudja az interpreter, hogy ez a sor ennek a függvénynek a törzséhez tartozik.
+                    Jelen esetben csak egy sorból áll a függvény, de ez természetesen nem szabályszerű.
+                    Azonos eltolással további sorok következhetnének.
+                    A forráskódot tovább olvasva egy <b>if __name__ == '__main__':</b> sorral találkozhatunk.
+                    Ez egy különös jelenség! Mire jó? Ez a program belépési pontját jelöli.
+                    Talán emlékszel, hogy korábban már megemlítettem. Itt indul a program végrehajtása.
+                    Hogy micsoda? Miért a végéről kezdjük? Miért nem lehetett volna az elején kezdeni?
+                    Meg különben is mi ez a __name__ == '__main__'?
+                    Az if valamilyen feltételhez kötött programrész kezdetét jelöli.
+                    A teljesítendő feltétel jelen esetben,
+                    hogy a __name__ változó értéke legyen egyenlő a __main__ karakterlánccal.
+                    E mögött nem kell különösebb logikát keresni. Ez amolyan Pythonos dolog.
+                    Számunkra tényleg nem jelent többet, mint hogy itt kezdődik a program végrehajtása.
+                    Ez után a sor után ismét négy szóközzel beljebb kezdődik egy sor.
+                    Itt van egy kulcsszó, amivel már talákoztunk. A <b>print_hi</b> a korábban definiált függvény neve.
+                    Ezzel meghívjuk a korábbi függvényt. Végrehajtódik a függvény törzse.
+                    Ez jelen esetben ki írja a konzolra a <b>Hi, PyCharm</b> feliratot.
+                    Láthatjuk, hogy a PyCharm szót paraméterként adjuk át a függvénynek,
+                    ahol a <b>name</b> változó fogja tartalmazni ezt az értéket.
+                    Legyen most ennyi elég az ad hoc programelemzésből!
+                    A szintaxis részleteiről majd később beszélünk.
+                    A szövegszerkesztő bal szélén, a lap tetején található zöld nyílra kattintva futtathatjuk a programot.
+                    Ezt követően az ablak alsó részében megjelenik a <b>Hi, PyCharm</b> felirat.
+                    Ezen kívül megjelent még a <b>Process finished with exit code 0</b>.
+                    A programok mindig valamilyen számértéket adnak vissza a lefutás után.
+                    Ezzel értesítik az operációs rendszert vagy a felhasználót a futás eredményéről.
+                    A 0 azt jelenti, hogy minden a legnagyobb rendben történt. Nem keletkeztek hibák a program futása során.
+                </p>
+            </div>
+        </div>
+        <div class="center-align">
+            <div class="row">
+                <a href="03-valtozok.html" class="waves-effect waves-light btn-large">Következő fejezet</a>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../js/materialize.min.js"></script>
+</body>
+<footer class="page-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col 16 s12">
+                <h5 class="white-text">Linkek</h5>
+                <ul>
+                    <li><a class="grey-text text-lighten-3" href="https://www.python.org/" target="_blank">Python nyelv</a></li>
+                    <li><a class="grey-text text-lighten-3" href="https://www.jetbrains.com/pycharm/" target="_blank">PyCharm IDE</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+        © 2022 Simon Zoltán
+        </div>
+    </div>
+</footer>
+</html>

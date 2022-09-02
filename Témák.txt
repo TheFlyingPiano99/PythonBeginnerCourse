@@ -1,0 +1,13 @@
+
+	 _______________________________________
+	|										|
+	|	A kurzusban feldolgozott területek	|
+	|_______________________________________|
+	
+	1.	A Python nyelv bemutatása madártávlatból
+	
+	2.	Első program elkészítése
+	
+	3.	
+	
+	4.	

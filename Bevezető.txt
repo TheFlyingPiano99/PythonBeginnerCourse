@@ -1,0 +1,21 @@
+	 _______________________________
+	|								|
+	|	Bevezető a Python kurzushoz	|
+	|_______________________________|
+	
+	Üdvözöllek az első Python kurzusodon!
+	Itt lehetőséged lesz elsajátítani a Python programozási nyelv alapjait.
+	ÉS EZ NEM MINDEN!!! A szigorúan Pythonnal kapcsolatos tudáson felül igyekszek majd bemutatni néhány általános programozási elvet is. Ha ezeket egyszer megérted, onnantól kezdve bárhol alkalmazhatod majd őket.
+
+	____________________________________________________________________________________________
+	
+	Miért pont a Python?
+	
+	A Python egy nagyon elterjedt, könnyen tanulható programozási nyelv.
+	Számos matematikai és adatfeldolgozásra alkalmas könyvtár létezik hozzá. (Ezekről is lesz szó a későbbiekben.)
+	Nagyon nagy támogató közössége van világszerte.
+	Természettudományos területen tevékenykedő emberek legtöbbje valamilyen módon kapcsolatban áll ezzel a nyelvvel.
+	Mivel igen megengedő szintaxissal rendelkezik, ezért korábbi programozási alapismeretek híján jó belépő lehet a kódolás világába.
+	
+	Hogyha készen állsz, akkor vágjunk is bele.
+	

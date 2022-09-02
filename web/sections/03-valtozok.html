@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-16">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python kurzus - Változók</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="../css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="../css/custom.css"  media="screen,projection"/>
+</head>
+<header>
+    <nav>
+        <div class="nav-wrapper">
+            <ul id="nav-mobile" class="right">
+                <li><a href="../index.html">Kezdőoldal</a></li>
+                <li><a href="02-ide.html">Előző fejezet</a></li>
+                <li><a href="04-muveletek.html">Következő fejezet</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<body>
+    <div class="container">
+        <h1>
+            Változók
+        </h1>
+        <div class="card">
+            <span class="card-title"></span>
+            <div class="card-content">
+                <p>
+                    Az előző fejezetben telepítettük a PyCharm nevű IDE-t, és röviden átfutottuk
+                    a generált kezdőprogram tartalmát. Ebben a fejezetben megismerkedünk a programok egyik elengedhetetlen
+                    hozzávalójával, a változókkal.
+                    Ahogyan a matematikában, úgy a szoftverek világában is szükség van különböző értékek reprezentálására.
+                    Gondoljuk át, hogy a matematikában ezek hogyan működnek!
+                    Amikor először bevezetünk egy új változót azt más szóval a változó deklarálásának nevezzük.
+                    Ez együtt szokott járni a változó értékkészletének megadásával.
+                    Például <b>x</b> eleme a válós számok halmazának.
+                    Ezek után a változókhoz értéket rendelünk: <b>x := 10</b>.
+                    A különböző változók aztán műveletekben vesznek részt.
+                    Gyakran függvények változóiról beszélünk. 
+                    Ez azért hasznos, mert anélkül, hogy konkrét értékekről kellene beszélni, tudunk általános műveleti szabályokat definiálni.
+                    Az <b>y = 10x + 4x^2 + 6</b> egy általános matematikai utasítás sorozat, ami egy konkrét <b>x</b> érték ismeretében
+                    könnyen elvégezhető.
+                </p>
+                <p>
+                    Most, hogy gondolkodtunk a matematikai változók szerepéről,
+                    nem lesznek olyan idegenek a programozási nyelvekben használatos változók sem.
+                    Egy programban megtehetjük, hogy csak előre begépelt értékekkel dolgozunk, de ennek önmagában nem sok gyakorlati haszna van.
+                    Elvégre, ha előre imsertek az értékek, akkor minek a program?
+                    Miért nem végeztük el a műveleteket előre papíron, és íratjuk ki a megoldást: <b>print("A megoldás 42.")</b>
+                    Azért az így bedrótozott értékeknek is lehet olykor haszna. Ezeket "szép" magyarsággal literáloknak nevezzük.
+                    Gyakori használatuk azonban erősen ellenjavallot!
+                </p>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title">Változók deklarálása</span>
+                    <p>
+                        A matematikához hasonlóan a programokban használni kívánt változókat is használat előtt deklarálni kell.
+                        Ez Python esetében igen egyszerű feladat.
+                        Írjuk le a változó nevét, majd egyenlőséggel rendeljük hozzá az értéket!
+                        Ezt próbáljuk is ki a múltkor generált üdvözlő program szerkesztésével!
+                        Kezdjünk új sort a <b>print(f'Hi, {name}')</b> sor után!
+                        Ebben a sorban is tartsuk meg a 4 szóköznyi betolást!
+                        Ezzel jelezzük, hogy továbbra is a <b>print_hi</b> függvényt folytatjuk.
+                        Itt írjuk a <b>x = 10</b> sort!
+                        Ezzel létrehozzuk az <b>x</b> változót, amihez rögtön hozzárendeltük a 10 egész értéket.
+                        Hozzunk létre még egy változót a következő sorban: <b>y = 5</b>!
+                    </p>
+                    <pre>
+                        <code>
+def print_hi(name):
+    print(f'Hi, {name}')
+    x = 10
+    y = 5
+                        </code>
+                    </pre>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title">Érték hozzárendelés</span>
+                    <p>
+                        Ugyan a deklarálás során máris rendeltünk értéket a változóinkhoz,
+                        később is megváltoztathatjuk az értékük.
+                        Ehhez egyszerűen újra az egyenlőségjelet használjuk.
+                        <b>x = x + y + 2</b>
+                        Ezzel az <b>x</b> értéke 10-ről 10 + 5 + 2 = 17-re változik.
+                        Itt az értékadás jobb oldalán is használtuk ugyanazt a változót,
+                        amihez az új értéket akarjuk rendelni. Ez teljesen rendben van.
+                        Azért működik, mert először az egyenlőségjel jobb oldalán levő kifejezés értékelődik ki.
+                        Így elöször előáll a 10 + 5 + 2 eredménye, amit végül hozzárendelünk az x-hez, felülírva annak korábbi tartalmát.
+                    </p>
+                    <p>
+                        Hogy láthassuk, ez valóban működik, írjunk még egy kódsort!
+                        Legyen ez a következő: <b>print("Az eredmény " + str(x))</b>
+                        Futtatva a programot a helyes megoldást a konzolban olvashatjuk.
+                        Itt a <b>str(value)</b> függvény karakterlánccá konvertálja a számértéket.
+                    </p>
+                    <pre>
+                        <code>
+def print_hi(name):
+    print(f'Hi, {name}')
+    x = 10
+    y = 5
+    x = x + y + 2
+    print("Az eredmény " + str(x))
+                        </code>
+                    </pre>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title">Alapvető típusok</span>
+                    <p>
+                        Az eddigi példákban egész számokat rendeltünk értékül változóinkhoz.
+                        Az egész számokra az <b>integer</b> angol kifejezéssel szoktunk hivatkozni.
+                        Ezeken kívül szükségünk lehet törtrésszel rendelkező értékekre is.
+                        Az ilyeneket <b>floating point</b> vagy röviden <b>float</b> értékeknek nevezzük utalva ezzel a mozgó tizedes vesszőre.
+                        A tizedes vessző helyett Pythonban (hasonlóan más programnyelvekhez) pontot teszünk.
+                        Ez segít a elkerülni a keveredést a felsorolást jelentő vesszők és a tizedes számok közt.
+                        Változtassuk meg kódunkban az összeadásban szereplő valamelyik értéket, kiegészítve azt néhány tizedesjeggyel!
+                        Ez után futtatva a programot a kiírt eredmény is tartalmazni fogja a tizedes részt.
+                        A Python annyira rugalmas, hogy ha elosztunk két egész számot, amely eredményeként egy tizedes törtet kapunk,
+                        akkor az eredmény már float lesz. Persze mondhatnánk, hogy ez az elvárt, de más programozási nyelveknél ez nem magától értetődő.
+                    </p>
+                    <p>
+                        Eddig egész és tizedes számokkal dolgoztunk. A következő típus legyen a szöveg!
+                        Betűk, számjegyek, írásjelek lánca. Igen, ez is egy külön típus. Egy nagyon fontos típus.
+                        A karakterláncot <b>string</b>-nek nevezzük.
+                        Igazából már találkoztunk vele, amikor a print függvénnyel szöveget írattunk ki a konzolra.
+                        Ez egy string paramétert fogadott. Ezen kívül a print_hi függvény is string értéket vár paraméterül,
+                        ami a <b>name</b> változóhoz rendelődik hozzá.
+                        A stringeket Pythonban egyszeres vagy kétszeres idézőjelek közé írjuk.
+                        Például <b>x = 'Ez egy string.'</b> vagy <b>y = "Ez egy másik."</b>.
+                        Lehetőség van stringek összefűzésére. Ezt a plusz jel használatával tehetjük meg.
+                        Ezt alkalmaztuk a <b>print("Az eredmény " + str(x))</b> műveletben,
+                        ahol az <b>"Az eredmény "</b> karakterláncot és az <b>x</b> változó értékét karakterlánccá alakítva a kettőt a + operátorral fűztük össsze.
+                        Egy másik lehetőség a <b>print(f'Hi, {name}')</b> példában látott megoldás.
+                        Itt egy karakterláncba ágyaztunk egy másik változót. A string műveletekkel egy későbbi fejezetben fogunk részletesebben foglalkozni.
+                    </p>
+                    <p>
+                        Beszéljünk a logikai értékekről!
+                        Egy logikai kifejezés kiértékelése után igaz vagy hamis eredményre jutunk. Ezeket Pythonban a <b>True</b> és <b>False</b> kulcsszavak jelölik.
+                        Az a változó, amely ezen kettő közül vesz fel értéket <b>Boolean</b> típusú. A boolean tehát a logikai érték szinonímája.
+                        Eddigi tapasztalatainkkal egy ilyen változó deklarálása és értékadása már gyerekjáték: <b>b = True</b> vagy <b>b = False</b>.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">Lista</span>
+                <p>
+                    Az integer, float, string és boolean néhány alapvető típus, amellyekkel lényegében már bármit le tudunk írni.
+                    Jó volna azonban, hogyha ezeket nem csak egyesével tudnánk tárolni!
+                    Hozzunk létre olyan adatszerkezeteket, amelyek egyszerre sok változót tartalmaznak!
+                </p>
+                <p>
+                    Egy ilyen adatszerkezet a lista (<b>list</b>), amely értékek felsorolását tartalmazza.
+                    Létrehozásához szögletes zárójelek közt vesszővel elválasztva soroljuk fel az értékeket.
+                    Például <b>lista1 = [10, 5, 46, 8, 9, 11, 8, 9]</b> vagy <b>lista2 = ["alma", "körte", "szilva"]</b>.
+                    A <b>lista1</b> illetve <b>lista2</b> változókhoz most egy-egy listát rendeltünk.
+                    A lista is egy típus! Változók tárolhatnak lista típusú értéket.
+                    Láthatjuk, hogy egy érték többször is előfordulhat egy listában (a 8 és 9). Ez nem probléma,
+                    viszont a jövőben majd megismerkedünk olyan adatszerkezettel is, amelyben nem ismétlődhetnek értékek.
+                    Ebben a fejezetben azonban nem merészkedünk tovább a listánál.
+                    Ennek is sok tulajdonsága van. Most csak az alapokat nézzük meg, hogy betekintést nyerjünk a témába.
+                    Azon kívül, hogy ismétlődhetnek azonos értékek, a listák másik fontos jellemzője a fix sorrend.
+                    Ez azt jelenti, hogy az elemek olyan sorrendben lesznek tárolva, amilyen sorrendben felsoroltuk őket.
+                    Ez a sorrend nem változik meg, hacsak mi nem pakoljuk át az elemeket.
+                    A tárolt elemekhez indexeléssel férhetünk hozzá. Ehhez a listát tároló váltózó neve után közvetlenül
+                    szögletes zárójelek közé írjuk a elérendő elem indexét. A sorszámozás nullától indul.
+                    A példánkban elsőként deklarált lista első elemét tehát <b>lista1[0]</b> formában érhetjük el.
+                    A listák elemeinek értéke módosítható.
+                    Ehhez írjuk az egyenlőségjel bal oldalára az indexelt változónevet! <b>lista1[0] = 15</b>
+                    Jó kényelmi funkció, hogy a print függvénnyel egyszerűen kiíratható egy lista tartalma. <b>print(lista_nev)</b>
+                </p>
+                <pre>
+                    <code>
+lista1 = [10, 5, 46, 8, 9, 11, 8, 9]
+lista2 = ["alma", "körte", "szilva"]
+lista1[0] = 15
+print(lista1)   
+print(lista2)   
+                    </code>
+                </pre>
+                <p>
+                    Figyeljük meg, hogy a konzolba írt integereket tartalmazó lista első eleme már a megváltoztatott 15-ös érték!
+                </p>
+                <p>
+                    A Python egy érdekes tulajdonsága, hogy egy listában nem csak azonos típusú elemeket lehet tárolni.
+                    Simán megcsinálhatjuk, hogy vegyesen sorolunk fel a korábban tanult típusú elemeket.
+                </p>
+                <pre>
+                    <code>
+vegyes_lista = [10, "szöveg", 11.52, True, False]
+print(vegyes_lista)
+                    </code>
+                </pre>
+                <p>
+                    Ez így mondjuk elég zavaró. Általában nem szokás létrehozni ilyen kevert listákat.
+                    Nehéz lenne vele a munka, hiszen nem tudjuk, hogy az egyes értékeknél milyen típusra számítsunk.
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">Összefoglaló</span>
+                <p>
+                    Ebben a fejezetben megtanultuk, hogyan hozhatunk létre változókat. 
+                    Szó volt néhány gyakori típusról.
+                    Már tudunk számokat reprezentálni <b>integer</b> és <b>float</b> formájában.
+                    Tárolhatjuk a kedvenc filmünk címét <b>string</b> típusú változóként.
+                    Számon tarthatjuk, hogy esik-e az eső ma <b>boolean</b> változó segítségével.
+                    Mindezekből listát is készíthetünk, amely értékeit később egyesével érhetjük el.
+                </p>        
+            </div>
+        </div>
+
+        <!--Gomb a következő oldalra-->
+        <div class="center-align">
+            <div class="row">
+                <a href="04-muveletek.html" class="waves-effect waves-light btn-large">Következő fejezet</a>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../js/materialize.min.js"></script>
+    <!-- Syntax highlighter: -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+<footer class="page-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col 16 s12">
+                <h5 class="white-text">Linkek</h5>
+                <ul>
+                    <li><a class="grey-text text-lighten-3" href="https://www.python.org/" target="_blank">Python nyelv</a></li>
+                    <li><a class="grey-text text-lighten-3" href="https://www.jetbrains.com/pycharm/" target="_blank">PyCharm IDE</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+        © 2022 Simon Zoltán
+        </div>
+    </div>
+</footer>
+</html>
