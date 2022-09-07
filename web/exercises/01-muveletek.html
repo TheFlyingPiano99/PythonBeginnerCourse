@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-16">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python kurzus - Változók</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="../css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="../css/custom.css"  media="screen,projection"/>
+</head>
+<header>
+    <nav>
+        <div class="nav-wrapper">
+            <ul id="nav-mobile" class="right">
+                <li><a href="../index.html">Kezdőoldal</a></li>
+                <li><a href="../sections/04-muveletek.html">Vissza a tananyaghoz</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<body>
+    <div class="container">
+        <h1>
+            Műveletek gyakorlása
+        </h1>
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">Másodfokú függvény</span>
+                <p>
+                    A feladat egy másodfokú függvény megvalósítása.
+                    A cél, hogy a konzolba beírt paraméterekkel helyes eredményt írjon ki a program.
+                    Vegyük végig lépésenként, hogyan oldható ez meg!
+                </p>
+                <ol>
+                    <li>
+                        Készítsünk egy új PyCharm projektet!
+                        Kattintsunk a <b>File / New Project...</b> menüpontra!
+                        Adjuk meg a projekt mentési útvonalát! Ez végződjön a <b>QuadraticFunc</b> könyvtárnévre!
+                        Ez lesz az új projekt neve.
+                        A <b>Location</b> sor alatt remélhetőleg a <b>Python Interpreter: Python 3.10</b> felíratot látjuk.
+                        Hogyha mégsem, akkor a <a href="../sections/02-ide.html">IDE telepítő</a> fejezetben leírt módon állítjuk be.
+                        Hagyjuk bepipálva a <b>Create a main.py welcome script</b> lehetőséget!
+                        Így kevesebb munkánk lesz.
+                    </li>
+                    <li>
+                        Ismerős a környezet, ismerős a kód. Ezt fogjuk testreszabni, hogy a mi általunk kívánt viselkedést produkálja.
+                        Kezdjük a <b>print_hi</b> függvény átnevezésével!
+                        Legyen a neve például <b>quadratic</b>.
+                        Ne felejtsük el ezt mindkét előfordulási helyen átírni!
+                        Egyszer a függvény definíciójánál és egyszer a hívásnál.
+                    </li>
+                    <li>
+                        A másodfokú függvény egy x számot fog paraméterül fogadni.
+                        Nevezzük át a függvény fejlécében a <b>name</b> paramétert <b>x</b>-re!
+                    </li>
+                    <li>
+                        Most kezdődik a tényleges funkció megvalósítása.
+                        A print sor előtt vegyünk fel három változót!
+                        <pre>
+                            <code>
+    a = 10
+    b = 9
+    c = 8                                
+                            </code>
+                        </pre>
+                        Az számértékeket válasszuk meg nekünk tetszőre!
+                    </li>
+                    <li>
+                        Vegyünk fel egy <b>y</b> változót, amihez a függvény értékét rendeljük!
+                        Itt kerül implementációra a számítás.
+                    </li>
+                    <pre>
+                        <code>
+    y = a * x**2 + b * x + c                            
+                        </code>
+                    </pre>
+                    <li>
+                        Most változtassuk meg a <b>print</b> tartalmát! Írjuk ki az <b>f'F(x) = {y}'</b> stringet!
+                        A kis f-fel jelölt stringbe kapcsos zárójelek között változókat lehet beágyazni.
+                        <pre>
+                            <code>
+    print(f'F(x) = {y}')
+                            </code>
+                        </pre>
+                    </li>
+                    <li>
+                        Kész a függvényünk. Ami, hátra van az a használata.
+                        Először is szeretnénk, ha a felhasználó tudná megadni, hogy milyen x értékkel számoljunk.
+                        Ehhez a <b>if __name__ == '__main__':</b> részben, a <b>quadratic</b> meghívása előtt írjuk a következő sort!
+                        <pre>
+                            <code>
+    x = float(input('Add meg az X értékét: '))
+                            </code>
+                        </pre>
+                        Az inputtal korábban még nem találkoztunk, viszont nagyon hasznos függvémy lesz a gyakorláshoz.
+                        Ez kiírja a paraméterül adott stringet, majd várakozni fog addig, amíg a felhasználó nem ír be valamit és nem ad entert.
+                        Ekkor az input visszatérési értéke a beírt érték lesz. Csakhogy ez a visszatérési érték string típusú.
+                        Ezért kell a float() függvénnyel számmá alakítani.
+                        Egyébként a másodfokú függvénybe is szövegként kerülne és nem működnének jól a műveletek.
+                    </li>
+                    <li>
+                        Végül adjuk át az itt létrehozott <b>x</b> változót a <b>quadratic</b> függvénynek!
+                        <pre>
+                            <code>
+    quadratic(x)
+                            </code>
+                        </pre>
+                    </li>
+                </ol>
+                <p>
+                    Készen vagyunk!
+                    A teljes programkódnak így kell kinézni:
+                    <pre>
+                        <code>
+def quadratic(x):
+    a = 10
+    b = 9
+    c = 8
+    y = a * x**2 + b * x + c
+    print(f'F(x) = {y}')
+
+# Press the green button in the gutter to run the script.
+if __name__ == '__main__':
+    x = float(input('Add meg az x értékét: '))
+    quadratic(x)
+                        </code>
+                    </pre>
+                    Futtatva a kódot a képernyő alján, a konzolban jelenik meg a kiírt szöveg. Mi is ide tudjuk beírni a kért x értéket.
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">Jótanácsok</span>
+                <p>
+                    <ul>
+                        <li>
+                            Figyeljünk a kód indendálására! Ez azt jelenti, hogy a betolásoknak / sor elei szóközöknek fontos szerepe van.
+                            Ebből tudja a fordító, hogy mi tartozik egy függvénytörzshöz.
+                            A <b>quadratic()</b> függvény törzsének minden sora legyen a <b>def</b>-es sortól négy szóközzel beljebb tolva
+                            Ez érvényes az <b>if __name__ == '__main__':</b> sor utáni sorokra is.
+                            Azok is az <b>if</b>-hez képest négy szóközzel legyenek beljebb!
+                        </li>
+                        <li>
+                            A változónevek és műveleti jelek közt érdemes szóközt hagyni a jobb olvashatóság érdekében.
+                            A ** operátor esetében most kivételt tettem, mert az valamennyire speciális szerepet tölt be a kifejezésben,
+                            de ott is lehetne szóközöket hagyni.
+                        </li>
+                        <li>
+                            Amennyiben nem törekszünk a különösebb optimalizálásra, (Márpedig nem törekszünk ilyesmire.),
+                            akkor jó ötlet a különböző részszámítások eredményét külön, új változókba menteni.
+                            Ezek elnevezése később segíteni fog rájönni, hogy korábban mit akartunk csinálni a kódunkkal.
+                            Általában hosszabb változó neveket használunk, amik jobban kifejezik a változók szerepét.
+                            Jelenleg a másodfokú függvényeknél használatos standard elnevezéseket használtam.
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+        <div class="center-align">
+            <div class="row">
+                <a href="../sections/04-muveletek.html" class="waves-effect waves-light btn-large">Vissza a tananyaghoz</a>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../js/materialize.min.js"></script>
+    <!-- Syntax highlighter: -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+<footer class="page-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col 16 s12">
+                <h5 class="white-text">Linkek</h5>
+                <ul>
+                    <li><a class="grey-text text-lighten-3" href="https://www.python.org/" target="_blank">Python nyelv</a></li>
+                    <li><a class="grey-text text-lighten-3" href="https://www.jetbrains.com/pycharm/" target="_blank">PyCharm IDE</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+        © 2022 Simon Zoltán
+        </div>
+    </div>
+</footer>
+</html>
