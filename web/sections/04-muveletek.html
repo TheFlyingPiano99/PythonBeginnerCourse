@@ -29,7 +29,9 @@
             <div class="card-content">
                 <span class="card-title"></span>
                 <p>
-                    Változóinkon különböző műveleteket szoktunk végezni. Korábban már adtunk össze számértékeket és fűztünk össze stringeket.
+                    Az előző fejezetben megtudtuk, hogyan hozzunk létre különböző változókat.
+                    Változóinkon különböző műveleteket szoktunk végezni.
+                    Már adtunk össze számértékeket és fűztünk össze stringeket.
                     Most nézzünk további művelettípusokat!
                 </p>
             </div>
@@ -37,6 +39,10 @@
         <div class="card">
             <div class="card-content">
                 <span class="card-title">Aritmetikai műveletek</span>
+                <p>
+                    Számértékekkel (legyeneke ezek egész számok vagy tizedes törtek) aritmetikai műveleteket szokás végezni.
+                    Az összeadás és szorzás nagyon sok programban fontos szerepet kap.
+                </p>
                 <h5>Összeadás +</h5>
                 <p>
                     A teljesség kedvéért ismételjük át a korábban látott összeadást.
@@ -67,14 +73,174 @@
                 <p>
                     Számértékek között <b>**</b> operátort írva (két aszteriszk) a baloldalsó értéket a jobboldalsó érték szerinti hatványkitevőre emeljük.
                 </p>
+                <pre>
+                    <code>
+print(10 + 3)   # = 13
+print(10 - 3)   # = 7
+print(10 * 3)   # = 30
+print(10 / 3)   # = 3.3333333333333335
+print(10 // 3)  # = 3
+print(10 % 3)   # = 1
+print(10 ** 3)  # = 1000
+                    </code>
+                </pre>
+                <p>
+                    Ezzel a kiíratással tesztelhetjük az előbb felsorolt aritmetikai műveleteket.
+                    Érdemes megfigyelni, hogy az osztás eredményeként előálló végtelen szakaszos tizedes tört
+                    véges pontossággal, és a végén 5-re kerekítve jelenik meg.
+                    Ez nem szabályos kerekítés, hiszen a 3-mat szabály szerint lefelé kerekítjük.
+                    Nem is igazi kerekítés ez, hanem egyszerűen a számítógép véges precizitásának eredménye az 5.
+                    Az értékek bináris számrendszerben vannak tárolva.
+                    Ami itt ennél lényegesebb, hogy egy előre megszabott mennyiségű helyiértéken.
+                    Pythonban a <b>float</b> értékek általában 64 bitesek, de előfordulhat 32 bites is.
+                    Ez azt jelenti, hogy 64 bináris számjegy áll rendelkezésre arra, hogy leírjunk egy számot.
+                    Floatok esetében annyival árnyaltabb a kép, hogy változik, hogy hol található a tizedesvessző.
+                    A számítógép annak megfelelően választja meg a tizedesvessző helyét, hogy éppen egy nagyon nagy számot,
+                    vagy egy nagyon nagy pontosságú számot akarunk tárolni.
+                    Ez automatikusan működik.
+                </p>
+                <p>
+                    Példaként végezzünk műveleteket a 3.3333333333333335 értékkel!
+                </p>
+                <pre>
+                    <code>               
+                                    #   3.3333333333333335
+print(3.3333333333333335 * 0.001)   # = 0.0033333333333333335
+                    </code>
+                </pre>
+                <p>
+                    Látszik, hogy itt több helyiértéket ír ki a program.
+                    Ez azért lehetséges, mivel ez egy kisebb szám, így felszabadultak a legnagyobb helyiértékek.
+                    Így a számítógép "balrább" téve a tizedesvesszőt több tizedesjegyet tud megjeleníteni.
+                </p>
+                <pre>
+                    <code>               
+                                    #   3.3333333333333335
+print(3.3333333333333335 * 1.000)   # = 3333.3333333333335
+                    </code>
+                </pre>
+                <p>
+                    Itt az előzővel ellentétben egy nagyobb számot kell kiíratni, ezért vesztünk a pontosságból.
+                </p>
+                <p>
+                    Ez a jelenség természetesen integer (egész) értékeknél nem jelentkezik.
+                    Ott egyáltalán nem tárolódnak tizedesjegyek.
+                </p>
             </div>
         </div>
         <div class="card">
             <div class="card-content">
-                <span class="card-title"></span>
+                <span class="card-title">Összehasonlító műveletek</span>
                 <p>
-                    ...                    
-                </p>        
+                    Gyakran felmerül az igény, hogy különböző értékeket összehasonlítsunk egymással.
+                    Egyenlőek-e? Hogyha nem, akkor melyik a nagyobb?
+                    Ilyen és hasonló kérdések megválaszolására szolgálnak az összehasonlító műveletek (Comparison Operators).
+                    Ezek mindegyike boolean típusú (logikai) értéket ad vissza eredményül.
+                    A visszaadott érték True, hogyha a kifejezés teljesül, és False, hogyha nem.
+                </p>
+                <h5>Egyenlő ==</h5>
+                <p>
+                    Két érték közt <b>==</b> operátort írva (két egyenlőségjel) megkapjuk, hogy a kettő egyenlő-e.
+                    A legtöbb programozási nyelv azért alkalmaz két egyenlőségjelet az egyenlőség vizsgálatára,
+                    hogy megkülönböztesse azt a hozzárendelés műveletétől.
+                    Korábban már láttuk, hogy a szimpla = a baloldali változóhoz rendelte a jobboldali értéket.
+                    Ezt fontos tudatosítani, mert hogyha egy összehasonlításnak szánt egyenlőségjelet csak egyszeresen írunk,
+                    akkor az hozzárendelést fog jelenteni. Erre nagyon figyeljünk!
+                </p>
+                <h5>Nem egyenlő !=</h5>
+                <p>
+                    Két érték közt <b>!=</b> operátort írva (felkiáltójel és egyenlőségjel) akkor kapunk igaz értéket, ha a kettő nem egyenlő.
+                    Ez a == ellentettje.
+                </p>
+                <h5>Nagyobb &gt</h5>
+                <p>
+                    Két érték közt <b>&gt</b> operátort írva akkor kapunk igaz értéket, ha a baloldalsó érték nagyobb a jobboldalsónál.
+                    Hogyha a baloldalsó kisebb vagy egyenlő a jobbnál, akkor hamis visszatérési értéket kapunk.
+                </p>
+                <h5>Kisebb &lt</h5>
+                <p>
+                    Két érték közt <b>&lt</b> operátort írva akkor kapunk igaz értéket, ha a baloldalsó érték kisebb a jobboldalsónál.
+                    Hogyha a baloldalsó nagyobb vagy egyenlő a jobbnál, akkor hamis visszatérési értéket kapunk.
+                </p>
+                <h5>Nagyobb vagy egyenlő &gt=</h5>
+                <p>
+                    Két érték közt <b>&gt=</b> operátort írva akkor kapunk igaz értéket, ha a baloldalsó érték nagyobb vagy egyenlő a jobboldalsónál.
+                    Hogyha a baloldalsó kisebb a jobbnál, akkor hamis visszatérési értéket kapunk.
+                </p>
+                <h5>Kisebb vagy egyenlő &lt=</h5>
+                <p>
+                    Két érték közt <b>&lt=</b> operátort írva akkor kapunk igaz értéket, ha a baloldalsó érték kisebb vagy egyenlő a jobboldalsónál.
+                    Hogyha a baloldalsó nagyobb a jobbnál, akkor hamis visszatérési értéket kapunk.
+                </p>
+                <pre>
+                    <code>
+print(5 == 4)   # = False
+print(5 != 4)   # = True
+print(5 > 4)    # = True
+print(5 < 4)    # = False
+print(5 >= 4)   # = True
+print(5 <= 4)   # = False
+
+print(4 >= 4)   # = True
+print(4 <= 4)   # = True                  
+                    </code>
+                </pre>
+                <p>
+                    Egyelőre integerek voltak az összehasonlítás tárgyai.
+                    Most vizsgáljuk meg röviden a float értékek összehasonlítását!
+                    Az össze eddig felsorolt komparáló művelet működik float értékekkel is.
+                    A ==, !=, &gt= és &lt= operátorok használata viszont nem javasolt. Miért?
+                    Korábban már esett szó a számok véges precizitásáról.
+                    Tegyük fel, hogy bizonyos értékeket bonyolultabb műveletek eredményéül kapunk!
+                    Ebben az esetben a számítások pontatlansága miatt lehetséges, hogy az elvárttól picit eltérő értéket kapunk.
+                    Ekkor a teljes egyezés vizsgálata félrevezető lehet.
+                    Hasonlóan járhatunk, hogyha azt vizsgáljuk, hogy két érték eltérő-e.
+                    Ezek tudatában a &gt= és &lt= operátorok is szimplán fölöslegesek.
+                    A gyakorlatban floatok egyenlőségének vizsgálatakor valamilyen hibaküszöböt vezetnek be.
+                    Kíváncsiak vagyunk, hogy az x változó értéke egyezik-e 10.0-zel. 
+                    A vizsgálat valahogyan így nézhet ki:
+                </p>
+                <pre>
+                    <code>
+(x > 9.9999 and x < 10.0001)
+                    </code>
+                </pre>
+                <p>
+                    Az <b>and</b> operátorról pillanatokon belül lesz szó.
+                </p>
+                <p>
+                    Nem csak számértékek közt végezhetünk összehasonlítást.
+                    Hogyha például az érdekel, hogy két embernek ugyanaz-e a neve,
+                    akkor ezt könnyedén kideríthetjük az egyenlőség operátor használatával.
+                    Hasonlóan jól működik a többi összehasonlító művelet.
+                    Az operátorok balról jobbra haladnak a szövegen,
+                    és egyesével összehasonlítják a karakterek <a href="https://hu.wikipedia.org/wiki/Unicode" target="_blank">Unicode</a> kódját.
+                    Ez részben ábécésorrendet jelent, de nem teljesen. Például a nagybetűk kisebb kóddal rendelkeznek a kisbetűknél.
+                    Az <b>"Alma"</b> tehát kisebb értékű, mint az "alma". Az ékezetes karakterek nagyobb kóddal rendelkeznek a latin ábécé ékezet nélküli összes karakterénél.
+                    Tehát a <b>"bálna"</b> kisebb az <b>"ámbráscet"</b>-nél.
+                </p>
+                <pre>
+                    <code>
+name1 = "Tomi"
+name2 = "Lajos"
+name3 = "Lajos"
+print(name1 == name2)           # = False
+print(name2 == name3)           # = True
+print("Alma" < "alma")          # = True
+print("bálna" < "ámbráscet")    # = True
+                    </code>
+                </pre>
+                <p>
+                    Nem érdemes tehát ezzel a módszerel betűrendbe rakni szavakat.
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">Logikai műveletek</span>
+                <p>
+                    
+                </p>
             </div>
         </div>
 
