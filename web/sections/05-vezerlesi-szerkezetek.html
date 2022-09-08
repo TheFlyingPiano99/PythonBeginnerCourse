@@ -27,13 +27,167 @@
         </h1>
         <div class="card">
             <div class="card-content">
+                <span class="card-title">Bevezető</span>
                 <p>
+                    Eddig olyan programokat tudunk írni, amelyek elindultak a belépési ponton,
+                    majd szép sorjában végigfutottak az összes utasításon.
+                    Nem voltak döntések vagy ismétlések. Szekvenciálisan futottak.
+                    Ebben a fejezetben megnézzük, hogyan írhatunk olyan programot,
+                    ami különböző feltételek teljesülésének függvényében más és más viselkedést produkál. 
                 </p>
             </div>
         </div>
         <div class="card">
             <div class="card-content">
+                <span class="card-title">Kódtömbök</span>
                 <p>
+                    Mielőtt elmerülnénk a különböző vezérlési szerkezetekben,
+                    fontos, hogy egyszer és mindenkorra jól felfogjuk a különböző kódtömbök szerepét.
+                    Már szembesültünk vele, hogy a függvények törzsénél fontos, hogy azonos legyen a sorok betolása.
+                    Ez jelzi a fordítónak, hogy a sorok az adott függvény törzsét alkotják.
+                    Ezt nevezzük a kód indentálásának.
+                    Sok más programnyelvben a sorok eltolása nélkül is működik a program.
+                    Ott zárójelezéssel jelezzük, az összetartozó sorokat.
+                    Ennek ellenére más programnyelveknél is használjuk az indentálást,
+                    mert ettől átláthatóbbá válik a kód szerkezete.
+                    Pythonban nincs választás: indentálni kell.
+                    A verézlési szerkezetek is további indentálási szinteket fognak követelni.
+                    Ezek egymásba fognak ágyazódni.
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">Feltételes végrehajtás</span>
+                <p>
+                    A programokban lehetőség van arra, hogy bizonyos kódsorok csak egy feltétel teljesülése esetén hajtódjanak végre.
+                    "Ha a feltétel teljesül, csináld ezt!"
+                    A legtöbb programnyelvben ezt az úgynevett <b>if</b> kifejezések segítségével tudjuk megvalósítani.
+                    Ennek felépítése a következő:
+                </p>
+                <pre>
+                    <code>
+if &ltfeltétel&gt:
+    &ltkódtömb&gt
+                    </code>
+                </pre>
+                <p>
+                    A <b>&ltfeltétel&gt</b> helyére egy logikai kifejezés kerül, ami igazra vagy hamisra értékelődik ki.
+                    Ez lehet egy egyszerű összehasonlító művelet,
+                    boolean változó vagy összetettebb zárójeleket, <b>and</b> és <b>or</b>-t tartalmazó kifejezés.
+                    A <b>&ltkódtömb&gt</b> bármilyen utasítások sorozata lehet.
+                    Az a fontos, hogy ezek négy szóközzel az <b>if</b>-es sortól beljebb kezdődjenek.
+                    Nézzünk egy példát:
+                </p>
+                <pre>
+                    <code>
+print('Ez az if előtt fut le.')
+x = 1
+if x < 10:
+    print('Ez a feltétel teljesülésekor fut le.')
+    print('Ez is csak a feltétel teljesülésekor fut le.')
+print('Ez mindig lefut.')
+                    </code>
+                </pre>
+                <p>
+                    Hogyha valamilyen utasítást csak akkor szeretnénk végrehajtani, hogyha a korábban feltételhez kötött utasításaink nem hajtódnak végre,
+                    akkor az if kifejezés <b>else</b> ágát vesszük igénybe.
+                    Ez tehát azt csinálja, amit az angol szó sugall.
+                    Hogyha az if felétele nem teljesült, akkor ez a blokk kerül végrehajtásra.
+                    Élesben ez így néz ki:
+                </p>
+                <pre>
+                    <code>
+print('Ez az if előtt fut le.')
+x = 10
+if x < 10:
+    print('Ez a feltétel teljesülésekor fut le.')
+    print('Ez is csak a feltétel teljesülésekor fut le.')
+else:
+    print('Ez akkor fut, ha az if feltétele nem tejesül.')
+    print('Ez is akkor fut, ha az if feltétele nem tejesül')
+print('Ez mindig lefut.')
+                    </code>
+                </pre>
+                <p>
+                    Már tudunk olyan programot készíteni, ami két lehetőség közül választ.
+                    Mivan akkor, amikor több mint két lehetőség áll rendelkezésre?
+                    Ez sem lesz nehéz.
+                    Össszevonjuk az if-et és az else-t és íme, megszületett az <b>elif</b>!
+                    Ez ötvözi az előző kettő viselkedését.
+                    Rendelkezik feltétellel, ami akkor kerül kiértékelésre, ha az előző feltétel nem teljesült.
+                    Ezeket egymás után lehet fűzni. Annyi a lényeg, hogy először mindig egy <b>if</b>-nek kell lennie.
+                    Az után jöhetnek <b>elif</b>-ek. <b>elif</b>-ből lehet bármennyi. Végül lehet egy sima <b>else</b>.
+                    Sima <b>else</b> nem előzhet meg <b>elif</b>-et, 
+                    mivel az a végső lehetőséget reprezentálja, ami akkor követezhet be, hogyha korábban semmelyik feltétel nem teljesült.
+                    Nézzünk példát!
+                </p>
+                <pre>
+                    <code>
+x = 15
+if x < 10:
+    print('x kisebb mint 10.')
+elif x < 20:
+    print('x kisebb mint 20.')
+elif x < 30:
+    print('x kisebb mint 30.')
+else:
+    print('x nagyobb vagy egyenlő mint 30.')
+                    </code>
+                </pre>
+                <p>
+                    Fontos tudatosítani, hogy az egy <b>if</b> után következő <b>elif</b>-ek sorozatából (és az egy <b>else</b>-ből)
+                    pontosan egy fog végrehajtódni. Hogyha az <b>else</b>-t lehadjuk, akkor lehet, hogy egysem.
+                    Méghozzá az az egy fog végrehajtódni, amelyiknek először teljesül a feltétele.
+                    Megfigyelhető, hogy ebben a példában egyre gyengébb felételeket fogalmaztam meg.
+                    Ugyanazek a felételek fordított sorrendben nem működtek volna.
+                    Hogyha először 30-al hasonlítottam volna össze az x-et, akkor a feltétel teljesült volna.
+                    Technikailag nem hibázna a program, hiszen 15 valóban kisebb, mint 30.
+                    Viszont az nem derülne ki, hogy az x értéke 20-tól is kisebb.
+                    A többi feltételt kiértékelés nélkül átugorná a program.
+                    Ennek intuitív megértését segíti, hogyha végig olvassuk a leírt kódot.
+                    if x < 10 ... elif x < 20 ... Ha x kisebb, mint 10, akkor írd ki ezt. <b>Egyébként</b>, hogyha igaz a következő feltétel, akkor csináld azt!
+                    Itt tehát az <b>else / else if / elif</b>-ben van a kulcsgondolat. Ezekkel csak akkor foglalkozik a progam, ha még egyik korábbi sem teljesült.
+                    Persze nem gond elérni, hogy minden ághoz tartozó feltétel külön kiértékelődjön. Egyszerűen ne használjuk az <b>elif</b>-et!
+                    Kezdjünk mindig új <b>if</b>-et! Valahogyan így:
+                </p>
+                <pre>
+                    <code>
+if x < 10:
+    print('x kisebb mint 10.')
+if x < 20:
+    print('x kisebb mint 20.')
+if x < 30:
+    print('x kisebb mint 30.')
+if x >= 30:
+    print('x nagyobb vagy egyenlő mint 30.')
+                    </code>
+                </pre>
+                <p>
+                    A feltételek jó megfogalmazása nem egyszerű feladat. Még a tapasztalt programozók is szoktak néha hibát véteni.
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">Ciklusok</span>
+                <p>
+                    A feltételeket felhasználva már tudunk olyan programot írni, ami képes átugorni utasításokat,
+                    amelyekre az adott feltételek függvényében nincs szükség.
+                    Így lényegében előrefelé ugrálunk a kódban.
+                    Végrehajtunk feltételhez kötött részeket és kihagyunk más feltételhez kötötteket.
+                    A továbbiakban meg fogjuk nézni, hogyan lehet hátraugrani a kódban.
+                    Azaz visszaugrunk majd a kód egy korábbi pontjára, ahonnan újrakezdjük a végrehajtást.
+                    Az ilyen szerkezeteket ciklusoknak nevezzük.
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">While ciklus</span>
+                <p>
+                    Az első ciklus típus, amivel megismerkedünk a <b>while</b> ciklus vagy angolosan <b>while loop</b> lesz.
+
                 </p>
             </div>
         </div>
@@ -48,6 +202,10 @@
     </div>
 
     <script type="text/javascript" src="../js/materialize.min.js"></script>
+    <!-- Syntax highlighter: -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>    
 </body>
 <footer class="page-footer">
     <div class="container">
@@ -58,7 +216,6 @@
                     <li><a class="grey-text text-lighten-3" href="https://www.python.org/" target="_blank">Python nyelv</a></li>
                     <li><a class="grey-text text-lighten-3" href="https://www.jetbrains.com/pycharm/" target="_blank">PyCharm IDE</a></li>
                 </ul>
-                
             </div>
         </div>
     </div>

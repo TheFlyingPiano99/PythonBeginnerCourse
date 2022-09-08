@@ -108,8 +108,12 @@
                         </pre>
                     </li>
                 </ol>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">Készen vagyunk!</span>
                 <p>
-                    Készen vagyunk!
                     A teljes programkódnak így kell kinézni:
                     <pre>
                         <code>
@@ -120,7 +124,7 @@ def quadratic(x):
     y = a * x**2 + b * x + c
     print(f'F(x) = {y}')
 
-# Press the green button in the gutter to run the script.
+    
 if __name__ == '__main__':
     x = float(input('Add meg az x értékét: '))
     quadratic(x)
@@ -132,9 +136,9 @@ if __name__ == '__main__':
         </div>
         <div class="card">
             <div class="card-content">
-                <span class="card-title">Jótanácsok / tanulságok</span>
+                <span class="card-title">Jótanácsok / tanulság</span>
                 <p>
-                    <ul>
+                    <ol>
                         <li>
                             Figyeljünk a kód indendálására! Ez azt jelenti, hogy a betolásoknak / sor elei szóközöknek fontos szerepe van.
                             Ebből tudja a fordító, hogy mi tartozik egy függvénytörzshöz.
@@ -151,10 +155,12 @@ if __name__ == '__main__':
                             Amennyiben nem törekszünk a különösebb optimalizálásra, (Márpedig nem törekszünk ilyesmire.),
                             akkor jó ötlet a különböző részszámítások eredményét külön, új változókba menteni.
                             Ezek elnevezése később segíteni fog rájönni, hogy korábban mit akartunk csinálni a kódunkkal.
+                            Most ezt a <b>x = float(input(''))</b> sorban és a <b>y = ...</b> sorban tettük meg.
+                            Így látszott, hogy az első a függvény bemenete, a második az eredménye.
                             Általában hosszabb változó neveket használunk, amik jobban kifejezik a változók szerepét.
                             Jelenleg a másodfokú függvényeknél használatos standard elnevezéseket használtam.
                         </li>
-                    </ul>
+                    </ol>
                 </p>
             </div>
         </div>
