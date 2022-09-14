@@ -172,7 +172,7 @@ if x >= 30:
             <div class="card-content">
                 <span class="card-title">Ciklusok</span>
                 <p>
-                    A feltételeket felhasználva már tudunk olyan programot írni, ami képes átugorni utasításokat,
+                    A feltételeket felhasználva már tudunk olyan programot írni, ami átugorja azokat az utasításokat,
                     amelyekre az adott feltételek függvényében nincs szükség.
                     Így lényegében előrefelé ugrálunk a kódban.
                     Végrehajtunk feltételhez kötött részeket és kihagyunk más feltételhez kötötteket.
@@ -184,21 +184,306 @@ if x >= 30:
         </div>
         <div class="card">
             <div class="card-content">
-                <span class="card-title">While ciklus</span>
+                <span class="card-title">While loop</span>
                 <p>
                     Az első ciklus típus, amivel megismerkedünk a <b>while</b> ciklus vagy angolosan <b>while loop</b> lesz.
+                    Rendelkezik egy belépési feltétellel, amely teljesülése esetén ismétli a hozzátartozó utasításokat.
+                    A felépítése a következő:
+                </p>
+                <pre>
+                    <code>
+while \ltbelépési feltétel&gt:
+    &lvégrehajtandó kód&gt
+                    </code>
+                </pre>
+                <p>
+                    Amikor programunk a <b>while</b>-t tartalmazó sorhoz ér, kiértékeli a <b>&ltbelépési feltétel&gt</b>-ként megadott logikai kifejezést.
+                    Amennyiben ez igaz eredményt ad, a végrehajtás a while törzsében folytatódik.
+                    Ellenkező esetben egyszer sem fut le a <b>while</b>-ba írt kód.
+                    Eddig tehát úgy működik, mintha egy közönséges <b>if</b>-et írtunk volna.
+                    Hogyha viszont lefutott a ciklus törzse, akkor újra kiértékelődik a belépési feltételt.
+                    Hogyha a feltétel ismét teljesül, a <b>while</b> törzse újra végrehajtódik.
+                    Ez a működés mindaddig ismétlődik, amíg a belépési feltétel nem lesz hamis értékű.
+                    Nézzünk egy példát!                    
+                </p>
+                <pre>
+                    <code>
+i = 100
+print('kezdődik a ciklus')
+while i > 0:
+    print(f'Az i értéke {i}')
+    i -= 5
+print('vége lett a ciklusnak')
+                    </code>
+                </pre>
+                <p>
+                    A programunk létrehoz egy <b>i</b> változót, amelyet 100-ra inicializál.
+                    A belépési feltételünk, hogy az <b>i</b> értéke legyen nagyobb, mint 0.
+                    Ez kezdetben természetesen teljesül.
+                    A <b>while</b> törzsében 5-ösével csökkentem az i értékét.
+                    Nézzük meg, hogy mi történik közvetlenül a ciklusból való kilépés előtt.
+                    Ott tartunk, hogy az <b>i</b> értéke éppen 5.
+                    Ez nagyobb, mint 0, ezért belépünk a <b>while</b>-ba.
+                    Itt kiírja a program az aktuális értéket, majd csökkenti az i értékét.
+                    Az új érték 0.
+                    Ezzel már nem teljesül a belépési feltétel.
+                    A végrehajtás a ciklus utáni kódsorral folytatódik.
+                    Nézzünk meg a következő egyszerű találós kérdés kódját.
+                </p>
+                <pre>
+                    <code>
+gondolt = 42
+x = int(input('Találd ki, melyik számra gondoltam: '))
+while x != gondolt:
+    print(f'Nem a(z) {x} volt a gondolt szám.')
+    x = int(input('Találd ki, melyik számra gondoltam: '))
+print(f'Gratulálok! Valóban a {gondolt} volt a gondolt szám.')
+                    </code>
+                </pre>
+                <p>
+                    A fenti program egész számokat vár a felhasználótól. Hogyha eltaláljuk, hogy a 42-re "gondolt" a program,
+                    Akkor vége a ciklusnak és kapunk egy dicséretet.
+                    Érdemes kipróbálni. Szórakoztató tud lenni olyan... 1 percig.
+                </p>
+                <p>
+                    Mi van akkor, hogyha a belépési feltétel soha nem lesz hamis?
+                    Az ilyen esetet nevezzük végtelen ciklusnak.
+                    A legtöbb esetben igyekszünk olyan feltételt megfogalmazni, amely egyszer biztosan hamissá válik.
+                    Az első példánkban bizonyíthatóan eljutunk egy nulla vagy negatív értékű <b>i</b>-hez.
+                    A másodikban már feltételezzük, hogy felhasználónk egyszer rájön a számra.
+                    Komolyabb alkalmazásban érdemes lenne lehetőséget biztosítani a játék feladására.
+                    A következő program tartalmaz egy végtelen ciklust.
+                </p>
+                <pre>
+                    <code>
+import time
 
+num = 0
+count_up = True
+while True:
+    print(num)
+    if count_up:
+        num += 1
+        if num >= 10:
+            count_up = False
+    else:
+        num -= 1
+        if num <= 0:
+            count_up = True
+    time.sleep(1)
+                    </code>
+                </pre>
+                <p>
+                    A program először felfelé számol, majd tíznél visszafordul és lefelé kezd számolni.
+                    0-tól ismét felfelé számol. Ezt ismétli a végtelenségig. 
+                    Nem történik semmi gond, ha futtatjuk a programot, mivel kívülről is le lehet lőni a futását.
+                    PyCharmban kattintsunk a <b>piros négyzetre</b>!
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">For ciklus</span>
+                <p>
+                    A <b>while</b> ciklus bemutatására hozott példákban többször előfordult, 
+                    hogy a ciklusban egy-egy változót kellett növelni vagy csökkenteni.
+                    Erre nagyon gyakran van szükség (és nem csak a most kitalált példákba lett készakarva beleerőltetve).
+                    Van is egy külön ciklus típus, ami leegyszerűsíti az ilyen iteratív feladatokat.
+                    Az olyan feladatokat, amikor egy intervallum elemein kell végiglépkedni.
+                    Ez a <b>for</b> ciklus.
+                    A felépítése a következő: 
+                </p>
+                <pre>
+                    <code>
+for &ltciklusváltozó&gt in &ltintervallum&gt:
+    &ltciklus törzse&gt
+                    </code>
+                </pre>
+                <p>
+                    A <b>&ltciklusváltozó&gt</b>-t nem kell a <b>for</b> előtt létrehozni.
+                    Azzal, hogy szerepel a fejlécben, automatikusan létrejön és használhatóvá válik a ciklus törzsében.
+                    A ciklusváltozó az <b>&ltintervallum&gt</b>-ban található értékeket fogja sorban felvenni.
+                    Arról, hogy hogyan kell egy intervallumot definiálni lesz szó rövidesen.
+                    A törzs első futásakor a ciklusváltozó az intevallum első elemét tartalmazza.
+                    A további ismétlésekkor az intervallum soron következő eleme lesz a ciklusváltozó értéke.
+                    Ebből az is következik, hogy a <b>for</b> ciklus törzse pontosan annyiszor fog lefutni,
+                    ahány elemű az adott intervallum.
+                </p>
+                <p>
+                    Mi az az intervallum?
+                    Igazából eddig azért használtam ezt a kifejezést, mert itt több minden szerepelhet.
+                    Az egyik lehetőség, hogy egy korábban létrehozott listát (<b>list</b>) adunk meg.
+                    Létrehozhatunk listát helyben is anélkül, hogy azt korábban egy változóhoz rendeltük volna.
+                </p>
+                <pre>
+                    <code>
+my_list = ['alma', 'körte', 'szilva']
+for item in my_list:
+    print(item)
+
+# Vagy helyben definiálva:
+for item in ['alma', 'körte', 'szilva']:
+    print(item)
+                    </code>
+                </pre>
+                <p>
+                    A jövőben meg fogunk ismerkedni egyéb, a listához hasonló adatszerkezetekkel is.
+                    Ezekkel is hasonlóan fog működni a <b>for</b>.
+                </p>
+                <p>
+                    Mi van akkor, ha nem egy konkrét listám van, hanem egyszerű egész számokon akarok iterálni.
+                    A <b>while</b> ciklus esetében is ilyeneket láttunk.
+                    Hogyan lehet ezt megoldani <b>for</b> segítségével?
+                </p>
+                <h5>range()</h5>
+                <p>
+                    A <b>range</b> függvény számok felsorolását adja vissza eredményül.
+                    A kívánt intervallumot különböző függvény paraméterek megadásával specifikálhatjuk.
+                    A legegyszerűbb eset, hogyha csak egy számot adunk meg paraméterül.
+                    Ez az intervallumban tartozó elemek számát fejezi ki.
+                </p>
+                <pre>
+                    <code>
+                        for i in range(10):
+                            print(i)
+                    </code>
+                </pre>
+                <p>
+                    A fenti példában a <b>range</b> függvény egy 10 elemű számsorozattal tér vissza.
+                    Az alapértelmezett viselkedés az, hogy a felsorolás első eleme a 0.
+                    Ez azt is jelenti, hogy az utolsó elem nem a 10 lesz, hanem a 9.
+                    Ez a viselkedés onnan ered, hogy az informatikában legtöbbször 0-tól kezdődik az indexelés.
+                    Korábban már beszéltünk például a lista elemeinek eléréséről.
+                    Ezt a lista neve utáni szögleteszárójelbe írt indexszel tehettük meg.
+                    Ott leírtam, hogy a lista első eleméhez a 0-ás index tartozik.
+                    Ennek oka a számítógépek memóriájának működésében keresendő.
+                    A Pythontól alacsonyabb szintű programozási nyelvekben a változók tárolhatnak nyers memória címeket.
+                    Hogyha a változó egy listát tárol, akkor valójában a lista első elemét tároló memória hely címét tárolja.
+                    Amikor a lista elemeit akarjuk elérni, akkor a megfelelő memória cím kiszámítása úgy működik,
+                    hogy a változóban tárolt címhez hozzáadjuk az indexet. Ezért az első elem indexe 0:
+                </p>
+                <pre>
+                    <code>
+// C nyelvben:
+x = array[0];
+// Ugyanaz mint:
+x = *(array + 0);
+                    </code>
+                </pre>
+                <p>
+                    <b>for</b> ciklust néha szoktak úgy használni (különösen a Pythontól alacsonyabb szintű programokban ;) ), 
+                    hogy egy <b>i</b> egész szám a ciklusváltozó,
+                    amelyet 0-tól kezdve növelünk, és a ciklus törzsében memória terület indexelésére használjuk.
+                    Remélhetőleg ez a magyarázat segít memorizálni, hogy a range miért 0-tól kezdődik.
+                </p>
+                <p>
+                    A <b>range</b> függvénnyel lehetőség van nem nullával kezdődő intervallum megadására is.
+                    Ehhez két paramétert kell megadni. Az első szám az intervallum legkisebb eleme.
+                    A második az intervallum felső határa, de maga a szám nem tartozik az intervallumba.
+                    Például:
+                </p>
+                <pre>
+                    <code>
+range(3, 7)
+                    </code>
+                </pre>
+                <p>
+                    Az eredményül kapott számok a 3, 4, 5 és 6. A 7 már nem tartozik bele.
+                    További lehetőség, hogy ne csak egyesével növekedjenek a számok, hanem általunk definiált léptékben.
+                    Ezt egy harmadik paraméter megadásával adhatjuk meg.
+                    Hogyha például egy 2-vel kezdődő számsorozatot akarunk megadni, aminek legnagyobb eleme kisebb mint 100 és az értékek 4-esével növekednek,
+                    akkor ezt a következő felírással tehetjük meg:
+                </p>
+                <pre>
+                    <code>
+range(2, 100, 4)
+                    </code>
+                </pre>
+                <p>
+                    Próbáljuk ki <b>for</b> ciklussal:
+                </p>
+                <pre>
+                    <code>
+for i in range(2, 100, 4):
+    print(i)
+                    </code>
+                </pre>
+                <p>
+                    Ebből látszik, hogy nem gond, hogyha az intervallum felső korlátja nem illesztkedik pontosan a tényleges legnagyobb értékhez.
+                    98 lesz a legnagyobb szám a felsorolásban, mert ahhoz 4-et adva már 100 nál nagyobb egyenlő értéket kapnánk. 
+                </p>
+                <h5>Egymásba ágyazott ciklusok</h5>
+                <p>
+                    Ki mondta, hogy nem rakhatunk egy ciklusba még egy ciklust?
+                    Még szép, hogy rakhatunk!
+                    Erre sok összetettebb algoritmusban van szükség.
+                    Mutatok egy példát.
+                </p>
+                <pre>
+                    <code>
+lista = [45, 1, 5, 6, 78, 5, 23, 79, 46, 50, 40, 11, 12, 61, 80, 9, 7]
+for i in range(len(lista)):
+    for j in range(len(lista) - i - 1):
+        if lista[j] > lista[j + 1]:
+            temp = lista[j]
+            lista[j] = lista[j + 1]
+            lista[j + 1] = temp
+print('Rendezett lista:')
+print(lista)
+                    </code>
+                </pre>
+                <p>
+                    A fenti kód egy rendező algoritmus.
+                    Nagyvonalakban elmondva a belső ciklus végiglépked a listán,
+                    és hogyha két szomszédos elem rossz sorrendben van, akkor felcseréli azokat.
+                    A belső ciklus egyszeri lefutása biztosan a helyére rakja a lista legnagyobb elemét.
+                    Ezért a következő futáskor már nem kell elmenni csak az utolsó előtti elemig.
+                    A külső ciklus ezt tartja számon. Észrevehetjük,
+                    hogy a belső ciklus intervallumának felső korlátját a külső ciklus <b>i</b> változóját felhasználva számoljuk.
+                    Az algoritmus neve <b>buborék rendezés</b>. Ez arra utal, hogy a nagy értékek felbuborékoznak a lista végére.
+                    Megnyugtatásul elárulom, hogy Pythonban van kész rendező algoritmus.
+                    Ennek használatát a következő példa szemlélteti:
+                </p>
+                <pre>
+                    <code>
+lista = [45, 20, 1, 5, 6, 78, 5, 23, 79, 46, 50, 40, 11, 12, 61, 80, 9, 7]
+lista.sort()
+print('Rendezett lista:')
+print(lista)      
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">Összefoglaló</span>
+                <p>
+                    Ebben a fejezetben megismerkedtünk a különböző vezérlési szerkezetekkel.
+                    Képessé váltunk feltételek megfogalmazására <b>if</b> segítségével.
+                    Itt a feltétel nemteljesülése esetére alternatív viselkedést is adtunk meg az <b>else</b> és <b>ifel</b> szerkezetekkel.
+                    Megtanultuk, hogy hogyan írjunk <b>while</b> vagy <b>for</b> ciklust.
+                    Végül részletesebben átnéztük a <b>for</b> ciklus által használt intervallumok megadásának néhány módját.
+                    Erre az utóbbira nagyon sok módszer van.
+                    Itt most nem fedtünk le mindent. Például most nem beszéltünk arról, hogyan lehet visszafelé lépkedni egy listában.
+                    Viszont amennyit már tudunk, azzal a közeljövőben egész szép dolgokat fogunk tudni létrehozni.
                 </p>
             </div>
         </div>
 
-        <!--Gomb a következő oldalra-->
+        <!--Gomb a gyakorláshoz-->
+        <div class="center-align">
+            <div class="row">
+                <a href="../exercises/02-exc-vezerlesi-szerkezetek.html" class="waves-effect waves-light btn-large">Gyakoroljunk</a>
+            </div>
+        </div>
+    </div>
+
+    <!--Gomb a következő oldalra-->
         <div class="center-align">
             <div class="row">
                 <a href="to-be-added.html" class="waves-effect waves-light btn-large">Következő fejezet</a>
             </div>
         </div>
-
     </div>
 
     <script type="text/javascript" src="../js/materialize.min.js"></script>

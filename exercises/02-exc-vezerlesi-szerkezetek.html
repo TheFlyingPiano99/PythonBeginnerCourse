@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-16">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python kurzus - Változók</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="../css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="../css/custom.css"  media="screen,projection"/>
+</head>
+<header>
+    <nav>
+        <div class="nav-wrapper">
+            <ul id="nav-mobile" class="right">
+                <li><a href="../index.html">Kezdőoldal</a></li>
+                <li><a href="../sections/05-vezerlesi-szerkezetek.html">Vissza a tananyaghoz</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<body>
+    <div class="container">
+        <h1>
+            Vezérlési szerkezetek gyakorlása
+        </h1>
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">Másodfokú egyenlet gyökei</span>
+                <p>
+                    Az előző gyakorló részben írtun egy másodfokúfüggvény számoló programot.
+                    Most készítsünk egy olyan programot, ami kiszámítja egy másodfokó egyenlet két gyökét!
+                    A felhasználó meg fogja tudni adni az egyenlet három paraméterét.
+                    Mivel egy másodfokú egyenletnek lehet nulla, egy vagy két valós gyöke,
+                    ezért ezeket a lehetőségeket különbözően fogjuk kiírni a szöveges konzolra.
+                    Jól fog tehát jönni a nemrég tanult feltételhez kötött végrehajtás.
+                </p>
+                <ol>
+                    <li>
+                        Készítsünk egy új PyCharm projektet!
+                        Kattintsunk a <b>File / New Project...</b> menüpontra!
+                        Adjuk meg a projekt mentési útvonalát! Ez végződjön a <b>QuadraticEqRoots</b> könyvtárnévre!
+                        Ez lesz az új projekt neve.
+                        A <b>Location</b> sor alatt remélhetőleg a <b>Python Interpreter: Python 3.10</b> felíratot látjuk.
+                        Hogyha mégsem, akkor a <a href="../sections/02-ide.html">IDE telepítő</a> fejezetben leírt módon állíthatjuk azt be.
+                        Hagyjuk bepipálva a <b>Create a main.py welcome script</b> lehetőséget!
+                    </li>
+                    <li>
+                        Kezdjük a <b>print_hi</b> függvény átnevezésével!
+                        Most tanulunk egy új trükköt.
+                        Amikor át szeretnénk nevezni egy változót vagy egy függvényt,
+                        akkor elég fáradságos minden előfordulási helyen egyesével átírni a nevet.
+                        Erre rakták bele a PyCharmba a <b>rename</b> funkciót.
+                        Kattintsunk jobb egérbillentyűvel a <b>print_hi</b> szövegen.
+                        A feljövő kontextus menüből válasszuk a <b>Refactor</b> lehetőséget.
+                        Itt látszik, hogy sokféle lehetőségünk van a kód szerkesztésére.
+                        Nekünk most a <b>Rename...</b> opció kell.
+                        A megnyíló ablakban lévő szövegmezőbe gépelhetjük az átnevezendő szimbólum új nevét.
+                        Legyen a neve például <b>quadratic_eq_roots</b>.
+                        A többi beállítást nem kell megváltoztatni.
+                        A <b>Scope</b> azt jelenti, hogy hol keresse az IDE az átnevezendő szimbólumot.
+                        Kattintsunk a <b>Refactor</b> gombra!
+                        Valószínűleg ez után még nem történt semmi.
+                        Alul viszont megjelent egy <b>Refactoring Preview</b> nevű ablak.
+                        Ez arra szolgál, hogy ellenőrizzük, jól adtuk-e meg a kívánt változtatásokat.
+                        Itt azt kell látnunk, hogy a <b>print_hi</b> függvény lesz átnevezve <b>quadratic_eq_roots</b>-ra.
+                        Ezt akartuk, ezért kattintsunk a <b>Do Refactor</b> gombra!
+                        Most már megjelent a kódban a változtatás.
+                        Nem csak ott, ahol rákattintottunk a névre, hanem a másik előfordulási helyen is.
+                        Ez a módszer gyakran használt szimbólumok átnevezésekor felbecsülhetetlen értékű.
+                    </li>
+                    <li>
+                        Írjuk át függvényünk paraméter listáját! Egy másodfokú egyenlet három paraméterrel rendelkezik.
+                        Ezek a négyzetes és lineáris tag együtthatói és a konstan tag.
+                        Általában <b>a</b>, <b>b</b> és <b>c</b>-vel jelöljük őket. Tartsuk magunkat ehhez!
+                        Töröljük a <b>name</b> változónevet és írjuk helyette a három változót:
+                        <pre>
+                            <code>
+def quadratic_eq_roots(a, b, c):
+    ...
+                            </code>
+                        </pre>
+                    </li>
+                    <li>
+                        Az egyenlet gyökeinek megtalálásához az ismert megoldóképletet alkalmazzuk.
+                        Ebből először a gyök alatti (b^2 - 4 * a * c) kifejezés értékét kell meghatározni,
+                        hogy eldőljön a valós gyökök száma.
+                        <pre>
+                            <code>
+def quadratic_eq_roots(a, b, c):
+    discr = b**2 - 4.0 * a * c
+                            </code>
+                        </pre>
+                    </li>
+                    <li>
+                        Ellenőrizzük a diszkrimináns értékét!
+                        Három lehetőségünk van.
+                        Ha az érték pozitív, akkor két különböző gyök lesz az eredmény.
+                        Ha az érték 0, akkor kettősgyökről van szó.
+                        Ha az érték negatív, akkor komplex gyökeink lesznek.
+                        Ezeket fogalmazzuk meg <b>if</b> feltételek formájában!
+                        <pre>
+                            <code>
+def quadratic_eq_roots(a, b, c):
+    discr = b**2 - 4.0 * a * c
+    if discr > 0:
+        pass
+    elif discr == 0:
+        pass
+    else:
+        pass
+                            </code>
+                        </pre>
+                        A <b>pass</b> kulcsszó jelzi a Pythonnak, hogy még nem írtunk tényleges törzset a feltételekhez.
+                        Egyfajta üres implementáció. Aggodalomra semmi ok, pillanatokon belül át fogjuk írni.
+                        Korábban szó esett arról, hogy lebegőpontos számokat (float) nem érdemes <b>==</b> operátorral összehasonlítani.
+                        Ebben az esetben azért indokolt az egyenlőség vizsgálata, mert a 0 diszkriminánst mégis csak külön szeretnénk kezelni.
+                        Figyeljük meg, hogy a harmadik esethez nem kell külön feltételt megfogalmazni,
+                        mivel a korábbi két feltétel már lefedte a pozitív és 0 értékeket.
+                        Kizárásos alapon csak a negatív számok maradtak.
+                    </li>
+                    <li>
+                        Most valósítsuk meg az egyes esetekhez tartozó viselkedést!
+                        Az első if ágban ki kell számolni mindkét gyököt. Ezt a <b>pass</b> helyére írjuk.
+                        <pre>
+                            <code>
+if discr > 0:
+    r1 = (-b - discr**0.5) / 2.0 * a
+    r2 = (-b + discr**0.5) / 2.0 * a
+    print(f'Az egyenlet gyökei {r1} és {r2}.')
+                            </code>
+                        </pre>
+                    </li>
+                    <li>
+                        Jöhet kettős gyök:
+                        <pre>
+                            <code>
+elif discr == 0:
+    r12 = -b / 2.0 * a
+    print(f'Az egyenlet kettős gyöke {r12}.')
+                            </code>
+                        </pre>
+                    </li>
+                    <li>
+                        Végül a komplex esetre most mondjuk azt, hogy nem foglalkozunk vele! :)
+                        Egyébként a Pythonban van beépített komplex szám típus. Azt használhatnánk.
+                        <pre>
+                            <code>
+else:
+    print(f'Az egyenletnek nincs valós gyöke.')                                              
+                            </code>
+                        </pre>
+                        Ezzel ez a függvény elkészült.
+                    </li>
+                    <li>
+                        Valósítsuk meg a három paraméter beolvasását!
+                        Menjünk a kód <b>if __name__ == '__main__':</b>-es részére!
+                        Ide jöhetnek az <b>input</b> függvények, amelyek beolvassák a konzolra írt értékeket.
+                        <pre>
+                            <code>
+if __name__ == '__main__':
+    a = float(input('a = '))
+    b = float(input('b = '))
+    c = float(input('c = '))
+    quadratic_eq_roots(a, b, c)
+                            </code>
+                        </pre>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">Kész vagyunk!</span>
+                <p>
+                    Itt a teljes programkód:
+                </p>
+                <pre>
+                    <code>
+def quadratic_eq_roots(a, b, c):
+    discr = b**2 - 4.0 * a * c
+    if discr > 0:
+        r1 = (-b - discr**0.5) / 2.0 * a
+        r2 = (-b + discr**0.5) / 2.0 * a
+        print(f'Az egyenlet gyökei {r1} és {r2}.')
+    elif discr == 0:
+        r12 = -b / 2.0 * a
+        print(f'Az egyenlet kettős gyöke {r12}.')
+    else:
+        print(f'Az egyenletnek nincs valós gyöke.')
+
+
+if __name__ == '__main__':
+    a = float(input('a = '))
+    b = float(input('b = '))
+    c = float(input('c = '))
+    quadratic_eq_roots(a, b, c)
+                    </code>
+                </pre>
+                <p>
+                    A zöld nyíllal futtassuk a kódot!
+                    A konzolban kérni fogja sorban a három paramétert.
+                    A számok beírása után enterrel léphetünk tovább.
+                    Azt is kipróbálhatjuk, hogy mi történik, ha nem számot adunk meg.
+                    Igen, így van: ekkor csúnyán leesik az egész. (Sad story...)
+                    A hiba oka, hogy a <b>float()</b> függvény nem tudja számmá konvertálni az olyan szöveget, amely nem csak számjegyekből és tizedespontból áll.
+                    Egyelőre tekintsünk el ettől! Majd később nézünk valamilyen megoldást.
+                    Bízzunk továbbra is a felhasználó felvilágosultságában és jóindulatában!
+                </p>
+            </div>
+        </div>
+
+        <div class="center-align">
+            <div class="row">
+                <a href="../sections/05-vezerlesi-szerkezetek.html" class="waves-effect waves-light btn-large">Vissza a tananyaghoz</a>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../js/materialize.min.js"></script>
+    <!-- Syntax highlighter: -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+<footer class="page-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col 16 s12">
+                <h5 class="white-text">Linkek</h5>
+                <ul>
+                    <li><a class="grey-text text-lighten-3" href="https://www.python.org/" target="_blank">Python nyelv</a></li>
+                    <li><a class="grey-text text-lighten-3" href="https://www.jetbrains.com/pycharm/" target="_blank">PyCharm IDE</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+        © 2022 Simon Zoltán
+        </div>
+    </div>
+</footer>
+</html>
