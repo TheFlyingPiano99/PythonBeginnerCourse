@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-16">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python kurzus - Adatszerkezetek</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="../css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="../css/custom.css"  media="screen,projection"/>
+</head>
+<header>
+    <nav>
+        <div class="nav-wrapper">
+            <ul id="nav-mobile" class="right">
+                <li><a href="../index.html">Kezdőoldal</a></li>
+                <li><a href="05-vezerlesi-szerkezetek.html">Előző fejezet</a></li>
+                <li><a href="to-be-added.html">Következő fejezet</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<body>
+    <div class="container">
+        <h1>
+            Adatszerkezetek
+        </h1>
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">Bevezető</span>
+                <p>
+                    Már tudunk alapvető adattípusokat létrehozni, és azokon műveleteket végezni.
+                    Az előző fejezetben már megismertük azokat a vezérlési szerkezeteket is,
+                    amelyek lehetővé teszik, hogy gyakorlatilag bármilyen algoritmust megvalósítsunk.
+                    A mostani tudásunkkal azonban összetettebb programok megvalósítása nagyon nehézkes lenne.
+                    Hogyha mindent változónkat külön külön kell létrehozni, és a kódban az elnevezéseken
+                    kívül semmi sem utal az egyes változók szerepére, illetve arra, hogy mely változók tartoznak logikailag össze,
+                    akkor nagyon nehéz lesz átlátni a saját munkánk.
+                    Ezt azzal orvosolhatjuk, hogy az olyan primitív adattípusokból, mint a string, int vagy float,
+                    összetett adatszerkezeteket hozunk létre.
+                    Már láttunk listákat a változókról szóló korábbi fejezetben.
+                    A listák nagyon fontosak, és alapvetőek. Ezért is szerepeltek a korábbi fejezetben.
+                    A Python azonban ennél sokkal változatosabb adatszerkezetek létrehozására ad lehetőséget.
+                    Ebben a fejezetben ezekkel foglalkozunk.
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">Lista (List)</span>
+                <p>
+                    Az ismétlés kedvéért itt újra leírom a listát, hogy egy helyen legyen.
+                </p>
+                <p>
+                    Egy ilyen adatszerkezet a lista (<b>list</b>), amely értékek felsorolását tartalmazza.
+                    Létrehozásához szögletes zárójelek közt vesszővel elválasztva soroljuk fel az értékeket.
+                    Például <b>lista1 = [10, 5, 46, 8, 9, 11, 8, 9]</b> vagy <b>lista2 = ["alma", "körte", "szilva"]</b>.
+                    A <b>lista1</b> illetve <b>lista2</b> változókhoz most egy-egy listát rendeltünk.
+                    A lista is egy típus! Változók tárolhatnak lista típusú értéket.
+                    Láthatjuk, hogy egy érték többször is előfordulhat egy listában (a 8 és 9). Ez nem probléma,
+                    viszont a jövőben majd megismerkedünk olyan adatszerkezettel is, amelyben nem ismétlődhetnek értékek.
+                    Ebben a fejezetben azonban nem merészkedünk tovább a listánál.
+                    Ennek is sok tulajdonsága van. Most csak az alapokat nézzük meg, hogy betekintést nyerjünk a témába.
+                    Azon kívül, hogy ismétlődhetnek azonos értékek, a listák másik fontos jellemzője a fix sorrend.
+                    Ez azt jelenti, hogy az elemek olyan sorrendben lesznek tárolva, amilyen sorrendben felsoroltuk őket.
+                    Ez a sorrend nem változik meg, hacsak mi nem pakoljuk át az elemeket.
+                    A tárolt elemekhez indexeléssel férhetünk hozzá. Ehhez a listát tároló váltózó neve után közvetlenül
+                    szögletes zárójelek közé írjuk a elérendő elem indexét. A sorszámozás nullától indul.
+                    A példánkban elsőként deklarált lista első elemét tehát <b>lista1[0]</b> formában érhetjük el.
+                    A listák elemeinek értéke módosítható.
+                    Ehhez írjuk az egyenlőségjel bal oldalára az indexelt változónevet! <b>lista1[0] = 15</b>
+                    Jó kényelmi funkció, hogy a print függvénnyel egyszerűen kiíratható egy lista tartalma. <b>print(lista_nev)</b>
+                </p>
+                <pre>
+                    <code>
+lista1 = [10, 5, 46, 8, 9, 11, 8, 9]
+lista2 = ["alma", "körte", "szilva"]
+lista1[0] = 15
+print(lista1)   
+print(lista2)   
+                    </code>
+                </pre>
+                <p>
+                    Figyeljük meg, hogy a konzolba írt integereket tartalmazó lista első eleme már a megváltoztatott 15-ös érték!
+                </p>
+                <p>
+                    A Python egy érdekes tulajdonsága, hogy egy listában nem csak azonos típusú elemeket lehet tárolni.
+                    Simán megcsinálhatjuk, hogy vegyesen sorolunk fel a korábban tanult típusú elemeket.
+                </p>
+                <pre>
+                    <code>
+vegyes_lista = [10, "szöveg", 11.52, True, False]
+print(vegyes_lista)
+                    </code>
+                </pre>
+                <p>
+                    Ez így mondjuk elég zavaró. Általában nem szokás létrehozni ilyen kevert listákat.
+                    Nehéz lenne vele a munka, hiszen nem tudjuk, hogy az egyes értékeknél milyen típusra számítsunk.
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">N-esek (Tuple)</span>
+                <p>
+                Az n-es egy matematikai fogalom ami "n darab" elem felsorolását jelenti.
+                Igazából ez a korábban ismertetett listához hasonló.
+                A szintaxisbeli különbség, hogy tuple-t sima gömbölyű zárójellel kell deklarálni.
+                (Ellentétben a listákhoz használatos szögletes zárójellel.)
+                Figyelem! Nem összetévesztendő azonban a "def fx(param1, param2):" függvény fejléc
+                az elsőre hasonló "t = (10, 45, 24)" tuple inicializációval, annak ellenére,
+                hogy mind két helyen gömbölyű zárójelezést használunk!
+                A lényeges eltérés a Python list és tuple szerkezetek közt,
+                hogy a tuple immutable objektum.
+                Az immutable szó azt jelenti, hogy létrehozta után nem módosítható.
+                Míg a listához lehet új elemeket fűzni, vagy törölni belőle,
+                addig a tuple-lel ezt nem tehetjük meg.
+                A tuple struktúrák gyakran függvények visszatérési értékeként tűnnek fel.
+                Függvények paramétere ugyanis gond nélkül lehet bármilyen összetettebb adatszerkezet is.
+                Illetve függvények visszatérési értéke is lehet egy n-es.
+                Hogyha a return után több különböző visszatérési értéket sorolunk fel,
+                akkor egyrészt megtehetjük, hogy a függvényt hívó kódrészletben
+                a hozzárendelés bal oldalán a visszaadottal azonos számú változót sorolunk fel.
+                Ilyenkor a visszadott értékek sorban az egyenlőségjel bal oldalán sorakozó változókhoz rendelődnek.
+                Itt van erre egy példa:
+                </p>
+                <pre>
+                    <code>
+def n_es_fuggveny(a, b, c):
+  # ... Munka a paraméterekkel ...
+  return a, b, c
+
+x, y, z = n_es_fuggveny(0, 5, 64)
+                    </code>
+                </pre>
+                <p>
+                    Ha azonban több értéket ad vissza egy függvény, de a hívás helyén a hozzárendelés művelet bal oldalán csak egy változó van,
+                    akkor ez a változó egy n-es értéket kap.
+                    Ez az n-es tartalmazni fogja az összes függvény által visszaadott értéket.
+                    Következzen egy példa az n-es visszatérési értékű esetre is:
+                </p>
+                <pre>
+                    <code>
+def n_es_fuggveny(a, b, c):
+  # ... Munka a paraméterekkel ...
+  return a, b, c
+
+visszaadott_n_es = n_es_fuggveny(0, 5, 64)    # visszaadott_n_es = (a, b, c)
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">Halmaz (Set)</span>
+                <p>
+                    A halmaz, vagy angolul set, egy rendezetlen adatszerkezet,
+                    amiben az adatok nem ismétlődhetnek.
+                    Egy halmaz nem tartalmazhatja kétszer ugyanazt az értéket.
+                    A halmazok deklarálásának szintaxisában -hasonlóan a korábban látottakhoz- 
+                    valamilyen zárójeltípus játszik szerepet.
+                    Jelen esetben ez a kapcsos zárójel "{}".
+                </p>
+                <pre>
+                    <code>
+halmaz = { 'alma', 'körte', 45, True, 46.01 }
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">Szótár (Dictionary)</span>
+                <p>
+                    A következő adatszerkezetünk a szótár vagy ismertebb nevén dictionary vagy röviden dict.
+                    Ez egy olyan adattípus, amiben a korábbiakhoz hasonlóan több elem tárolódik egyszerre,
+                    viszont a dictben kulcs-érték párokat tárolunk.
+                    A kulccsal lehet hivatkozni a hozzá tartozó értékre.
+                    Egy dictionary-ben nem megengedett az adatduplikáció.
+                    Ezt ebben az esetben úgy kell érteni, hogy egy kulcshoz csak egy érték tartozhat.
+                    A kulccsal később elérhetjük a megfelelő értékeket.
+                    Illetve módosíthatunk is egy adott kulcshoz tartozó értéket.
+                    A kulcsok általában stringek.
+                    Viszont más, immutable típusú értékek is szolgálhatnak kulcs gyanánt.
+                    A kulcs és érték párok között egy kettőspontot teszünk.
+                    Az egymást követő kulcs-érték párok között a már megszokott vesszőt rakjuk.
+                    Nézzünk meg egy példát szótárra!
+                </p>
+                <pre>
+                    <code>
+gyumolcs_szam = {
+  "alma": 12,
+  "korte": 6,
+  "barack": 7
+} 
+                    </code>
+                </pre>
+                <p>
+                    Az imént látott példában létrehoztunk egy gyumolcs_szam nevű szótárat.
+                    Ebbe inicializáláskor három kulcs-érték párt vettünk fel.
+                    Példánkban az egyes gyümölcsökhöz, mint kulcsokhoz, eltároltuk,
+                    hogy azokból hány darab áll rendelkezésre.
+                </p>
+                <p>
+                    A már létező kulcsokkal megcímezhetjük a szótárat.
+                    Ennek szintaxisa azonos a listáknál használatos indexelés szintaxisával.
+                    Azonban itt az index szám helyett a kulcsot írjuk.
+                </p>
+                <pre>
+                    <code>
+hany_db_alma = gyumolcs_szam["alma"]      # Almák számának kiolvasása
+gyumolcs_szam["alma"] = hany_db_alma + 1  # Almák számának frissítése
+                    </code>
+                </pre>
+                <p>
+                    Figyeljünk arra, hogy ne próbáljunk nem létező kulcsú értékhez hozzáférni.
+                    Ez KeyError hibaüzenetet generál.
+                    Viszont az megengedett, hogy egy hozzárendelés során egy olyan kulcshoz társítsunk értéket,
+                    amilyen kulcs korábban nem szerepelt a szótárban.
+                    Ekkor egy új kulcs-érték pár jön létre.
+                    Nézzünk meg egy-egy példát az itt leírt esetekre!
+                </p>
+                <pre>
+                    <code>
+hany_db_malna = gyumolcs_szam["malna"]      # VIGYÁZAT! Ez hibás, ha korábban nem volt "malna"!!!
+gyumolcs_szam["szeder"] = 23                # Ez működik. Létre fog jönni egy "szeder" kulcs, amihez a 23-as érték lesz társítva.
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">Műveletek adatszerkezetekkel</span>
+                <p>
+                    Itt megnézünk pár hasznos függvényt, amelyek megkönnyítik a munkát a már megismert adatszerkezetekkel.
+                </p>
+                <p>
+                  TODO ...
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">Összefoglaló</span>
+                <p>
+                    Ebben a fejezetben megismerkedtünk a legfontosabb Python adatszerkezetekkel.
+                    Ezek a lista, n-es, halmaz és szótár.
+                    A felsoroltak azonban még mindig viszonylag alacsonyszintű struktúrák.
+                    A következő fejezetben az osztályok kerülnek terítékre,
+                    amik minden korábbi elképzelésünket felül fogják szárnyalni.
+                </p>
+            </div>
+        </div>
+
+        <!--Gomb a gyakorláshoz-->
+        <div class="center-align">
+            <div class="row">
+                <a href="../exercises/03-exc-adatszerkezetek.html" class="waves-effect waves-light btn-large">Gyakoroljunk</a>
+            </div>
+        </div>
+    </div>
+
+    <!--Gomb a következő oldalra-->
+        <div class="center-align">
+            <div class="row">
+                <a href="to-be-added.html" class="waves-effect waves-light btn-large">Következő fejezet</a>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../js/materialize.min.js"></script>
+    <!-- Syntax highlighter: -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>    
+</body>
+<footer class="page-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col 16 s12">
+                <h5 class="white-text">Linkek</h5>
+                <ul>
+                    <li><a class="grey-text text-lighten-3" href="https://www.python.org/" target="_blank">Python nyelv</a></li>
+                    <li><a class="grey-text text-lighten-3" href="https://www.jetbrains.com/pycharm/" target="_blank">PyCharm IDE</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+        © 2024 Simon Zoltán
+        </div>
+    </div>
+</footer>
+</html>
